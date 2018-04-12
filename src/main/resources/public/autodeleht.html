@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Autod</title>
+		
+			<script
+  	src="https://code.jquery.com/jquery-3.3.1.js"
+  	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+ 	crossorigin="anonymous">
+			</script>
+	<script>
+		function kuvaAutod(){
+			$.ajax({url:"/loetelu", dataType:"json", success:function(saabuvTekst){
+			console.log(saabuvTekst);
+			$("#autodekiht").empty();
+			var loetelu = $("#autodekiht").append("<ul>");
+			$.each(saabuvTekst, function(nr, Autod){
+				loetelu.append($("<li />").html(Autod.nimi));
+				});
+			}
+		}
+	);
+}
+	</script>
+	</head>
+	<body onload="kuvaAutod()">
+		<h1>Autod</h1>
+		<div id = "autodekiht">kihikoht</div>
+	</body>
+
+</html>
