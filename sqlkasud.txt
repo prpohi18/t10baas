@@ -1,0 +1,11 @@
+CREATE TABLE inimesed(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	vanus INT,
+	pikkus DOUBLE,
+	kaal DOUBLE
+);
+
+INSERT INTO inimesed VALUES (DEFAULT, 26, 185, 96);
+INSERT INTO inimesed VALUES (DEFAULT, 30, 190, 77);
+
+SELECT * FROM inimesed;
