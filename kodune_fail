@@ -1,0 +1,68 @@
+Lisamine.java
+
+package baas;
+
+import java.sql.*;
+import java.io.*;
+
+public class Lisamine{
+	public static void lisa() throws Exception{
+		BufferedReader sisse=new BufferedReader(new InputStreamReader(System.in));
+		Connection cn=DriverManager.getConnection("jdbc:mysql://localhost/if17_ksoodla?user=if17&password=if17");
+		PreparedStatement st=cn.prepareStatement("INSERT INTO kassid VALUES(DEFAULT, ?, ?, ?)");
+		st.setString(1, "SUVALINE");
+		st.setDouble(2, 2.5);
+		st.setDouble(3, 33.3);
+		st.executeUpdate();
+		
+		System.out.println("Sisesta kassi tõug: ");
+		String Toug= sisse.readLine();
+		double toug = Double.parseDouble(Toug);
+		
+		System.out.println("Sisesta kass kaal: ");
+		String Kaal= sisse.readLine();
+		double kaal = Double.parseDouble(Kaal);
+		
+		System.out.println("Sisesta kass pikkus: ");
+		String Pikkus= sisse.readLine();
+		double pikkus = Double.parseDouble(Pikkus);
+		
+		st.setDouble(1, toug);
+		st.setDouble(2, kaal);
+		st.setDouble(3, pikkus);
+		st.executeUpdate();
+		
+	}
+}
+
+sql.txt
+
+CREATE TABLE kassid(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	toug VARCHAR(225);
+	kaal DOUBLE,
+	pikkus DOUBLE
+);
+
+INSERT INTO kassid VALUES (DEFAULT, 'P2rsia', 3.6, 33);
+INSERT INTO kassid VALUES (DEFAULT, 'Siiam', 4, 55.88);
+INSERT INTO kassid VALUES (DEFAULT, 'Sfinks', 4.2, 22.86);
+INSERT INTO kassid VALUES (DEFAULT, 'Bengal', 4.5, 90.1);
+
+SELECT * FROM kassid; 
+
+Baas1.java
+
+CREATE TABLE kassid(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	toug VARCHAR(225);
+	kaal DOUBLE,
+	pikkus DOUBLE
+);
+
+INSERT INTO kassid VALUES (DEFAULT, 'P2rsia', 3.6, 33);
+INSERT INTO kassid VALUES (DEFAULT, 'Siiam', 4, 55.88);
+INSERT INTO kassid VALUES (DEFAULT, 'Sfinks', 4.2, 22.86);
+INSERT INTO kassid VALUES (DEFAULT, 'Bengal', 4.5, 90.1);
+
+SELECT * FROM kassid; 
