@@ -1,0 +1,12 @@
+CREATE TABLE autod (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	numbrim2rk VARCHAR(255),
+	mark VARCHAR(255),
+    mudel VARCHAR(255)
+	);
+	
+INSERT INTO autod VALUES (DEFAULT, '198TDI', 'Volkswagen', 'Passat');
+INSERT INTO autod VALUES (DEFAULT, '100VET', 'BMW', 'E36');
+INSERT INTO autod VALUES (DEFAULT, '156JBK', 'Mercedes-Benz', 'E63S');
+
+SELECT * FROM autod;
