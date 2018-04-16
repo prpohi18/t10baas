@@ -1,0 +1,10 @@
+CREATE TABLE koerad( 
+  koeranimi VARCHAR(30) NOT NULL PRIMARY KEY,
+  vanus INT,
+  sugu VARCHAR(5),
+  omanik VARCHAR(30)
+); 
+
+INSERT INTO koerad VALUES ('Muki', 10, 'emane', 'Piret');
+INSERT INTO koerad VALUES ('Rex', 7, 'isane', 'Taavi');
+INSERT INTO koerad VALUES ('Kutsu', 2, 'emane', 'Liina');
