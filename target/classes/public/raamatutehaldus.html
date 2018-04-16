@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+      <title>Raamatute haldusleht</title>
+      <script>
+         var xhr=new XMLHttpRequest();
+         xhr.onreadystatechange=andmedSaabusid;
+         function andmedSaabusid(){
+            if(xhr.readyState==4){
+               console.log(xhr.responseText);
+               if(xhr.responseText.endsWith("salvestatud") ||
+                  xhr.responseText.endsWith("kustutatud") ||
+                  xhr.responseText.endsWith("puudub")){
+                    document.getElementById("teatekiht").innerHTML=xhr.responseText;
+                    kysiRaamatud();
+               } else {
+                  kuvaRaamatud();
+               }
+            }
+         }
+         
+         function kuvaRaamatud(){
+            var obj=JSON.parse(xhr.responseText);
+            var s="<ul>"
+            for(var i=0; i<obj.length; i++){
+               s+="<li onclick='kustutamine(\""+obj[i].pealkiri+"\")'>"+obj[i].pealkiri+"</li>";
+            }
+            s+="</ul>";
+            document.getElementById("raamatutekiht").innerHTML=s;
+         }
+         function kysiRaamatud(){
+             xhr.open("GET", "/loetelu", true);
+             xhr.send();
+         }
+         function lisamine(){
+             var nimi="/lisa?pealkiri="+document.getElementById("kast1").value+
+               "&autor="+document.getElementById("kast2").value;
+             xhr.open("GET", nimi, true);
+             xhr.send();
+         }
+         function kustutamine(email){
+             var nimi="/kustuta?pealkiri="+pealkiri;
+             xhr.open("GET", nimi, true);
+             xhr.send();
+         }
+      </script>
+  </head>
+  <body onload="kysiRaamatud()">
+    Pealkiri: <input type="text" id="kast1" />
+    Autor: <input type="text" id="kast2" />
+    <input type="button" value="Lisa raamat" onclick="lisamine()" />
+    <div id="teatekiht"></div>
+    <div id="raamatutekiht"></div>
+  </body>
+</html>
