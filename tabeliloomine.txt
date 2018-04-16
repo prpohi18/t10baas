@@ -1,0 +1,7 @@
+CREATE TABLE listid(
+   ylesanne VARCHAR(50) NOT NULL PRIMARY KEY,
+   aine VARCHAR(50),
+   olek INT
+);
+
+INSERT INTO listid VALUES ('t10', 'Programmeerimise põhikursus', 0);	
