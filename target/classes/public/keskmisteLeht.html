@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+	<title>Elanikud</title>
+	<script>
+		var xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=andmedSaabusid;
+		function andmedSaabusid(){
+			if(xhr.readyState==4){
+			console.log(xhr.responseText);
+				if(xhr.responseText.endsWith("salvestatud") || xhr.responseText.endsWith("kustutatud") || xhr.responseText.endsWith("puudub")){
+					document.getElementById("teatekiht").innerHTML=xhr.responseText;
+					kysiElanikud();
+				} else {
+					kuvaElanikud();
+				}
+			}
+		}
+		
+		function kuvaElanikud(){
+			var obj=JSON.parse(xhr.responseText);
+			var s="<ul>";
+			for(var i=0; i<obj.length; i++){
+				s+="<li onclick='kustutamine(\""+obj[i].nimi+"\")'>"+obj[i].nimi+"</li>";
+			}
+			s+="</ul>";
+			document.getElementById("elanikekiht").innerHTML=s;
+		}
+		
+		function kysiElanikud(){
+			xhr.open("GET", "/loetelu", true);
+			xhr.send();
+		}
+		
+		function lisamine(){
+			var elanikuNimi="/lisa?nimi="+document.getElementById("kast1").value+"&korter="+document.getElementById("kast2").value+"&kommunaalid"+document.getElementById("kast3").value+"&tasumine"+document.getElementById("kast4");
+			xhr.open("GET", elanikuNimi, true);
+			xhr.send();
+		}
+		
+		function kustutamine(nimi){
+			var elanikuNimi="/kustuta?nimi="+nimi;
+			xhr.open("GET", elanikuNimi, true);
+			xhr.send();
+		}
+		
+	</script>
+	</head>
+	Nimi: <input type="text" id ="kast1" />
+	<br>
+	Korter: <input type="text" id ="kast2" />
+	<br>
+	Kommunaalid: <input type="text" id ="kast3" />
+	<br>
+    Tasutud/tasumata: <input type="text" id ="kast4" />
+		
+	<input type="button" value="Lisa elanik" onclick="lisamine()" />
+	<body onload="kysiElanik()">
+	<div id="teatekiht"></div>
+		<div id="elanikekiht"></div>
+	</body>
+</html>

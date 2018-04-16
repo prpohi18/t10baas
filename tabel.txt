@@ -1,0 +1,8 @@
+CREATE TABLE elanikud(
+    nimi VARCHAR(30) NOT NULL PRIMARY KEY,
+    korter INT,
+    kommunaalid DOUBLE,
+    tasumine VARCHAR(30)
+);
+
+INSERT INTO elanikud VALUES ('Mari Maasikas', 19, 120, 'makstud');
