@@ -1,0 +1,12 @@
+CREATE TABLE pereliige (
+	eesnimi VARCHAR(30) PRIMARY KEY,
+	perenimi VARCHAR(30),
+	pikkus INT,
+    kaal INT
+);
+	
+INSERT INTO pereliige VALUES ('Markus', 'Heinsalu', '200', '85');
+INSERT INTO pereliige VALUES ('Margus', 'Hainsalu', '188', '70');
+INSERT INTO pereliige VALUES ('Margit', 'Seinsalu', '166', '50');
+
+SELECT * FROM pereliige; 
