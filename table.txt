@@ -1,0 +1,8 @@
+CREATE TABLE jalgpall(
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   nimi VARCHAR(50),
+   vanus INT
+);
+
+INSERT INTO jalgpall VALUES ('1', 'Cristiano Ronaldo', 32);
+INSERT INTO jalgpall VALUES ('2', 'Karim Benzema', 30);
