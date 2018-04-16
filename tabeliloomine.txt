@@ -1,0 +1,7 @@
+CREATE TABLE raamatud(
+	pealkiri VARCHAR(50) NOT NULL PRIMARY KEY,
+	autor VARCHAR(50),
+	laenutatud INT
+);
+
+INSERT INTO raamatud VALUES ('Mesilased', 'Meelis Friedenthal' 3);
