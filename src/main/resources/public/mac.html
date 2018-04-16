@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Programmeerimise põhikursus</title>
+    <script>
+        let xhr=new XMLHttpRequest()
+        xhr.onreadystatechange=kuvaVastus
+        function mac(){
+            let p2ring="mac="+document.getElementById("input").value
+            xhr.open("GET", "baasins?"+p2ring, true)
+            xhr.send(true)
+        }
+        function kuvaVastus(){
+            if(xhr.readyState==4){
+                document.getElementById("vastus").innerHTML=xhr.responseText
+            }
+        }
+        let xhr2=new XMLHttpRequest()
+        xhr2.onreadystatechange=getResults
+        function macaddrs(){
+            let p2ring2="mac="+document.getElementById("input").value
+            xhr2.open("GET", "baasget", true)
+            xhr2.send(true)
+        }
+        function getResults(){
+            if(xhr2.readyState==4){
+                document.getElementById("results").innerHTML=xhr2.responseText
+            }
+        }
+        window.onload = macaddrs
+</script>
+<style>
+    #macform{
+        margin: 20px 0px 0px 35px;
+    }
+    #resultsView{
+        margin-top: 25px;
+    }
+</style>
+</head>
+<body>
+    <div id="macform">
+        <form action="" method="get"></form>
+        <label>Sisesta MAC aadress</label> <!-- 00:e0:4c, 00:23:DF, 00:16:6B -->
+        <input type="text" value="" id="input" placeholder="XX:XX:XX:XX:XX:XX">
+        <br>
+        <input type="button" id="search" value="Otsi" onclick="mac()">
+        <div id="vastus"></div>
+        <div id="resultsView">
+            <span>Viimati otsitud aadress: </span>
+            <div id="results">
+                
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+</html> 
