@@ -1,0 +1,13 @@
+CREATE TABLE opilased (
+    -> id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> eesnimi VARCHAR(50),
+    -> perenimi VARCHAR(50),
+    -> klass VARCHAR(3),
+    -> keskminehinne DOUBLE
+);
+
+java -jar target/boot3-1.jar lisamine Juhan Kaalikas 5A 4.5
+
+java -jar target/boot3-1.jar kustutamine id 1
+
+java -jar target/boot3-1.jar vaatamine 2
