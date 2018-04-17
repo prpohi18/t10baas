@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+      <title>Rullnokkade tabel</title>
+      <script>
+         var xhr=new XMLHttpRequest();
+         xhr.onreadystatechange=andmedSaabusid;
+         function andmedSaabusid(){
+            if(xhr.readyState==4){
+               console.log(xhr.responseText);
+               if(xhr.responseText.endsWith("salvestatud") ||
+                  xhr.responseText.endsWith("kustutatud") ||
+                  xhr.responseText.endsWith("puudub")){
+                    document.getElementById("teatekiht").innerHTML=xhr.responseText;
+                    kysirullnokad();
+               } else {
+                  kuvarullnokad();
+               }
+            }
+         }
+         
+         function kuvarullnokad(){
+            var obj=JSON.parse(xhr.responseText);
+            var s="<ul>"
+            for(var i=0; i<obj.length; i++){
+               s+="<li onclick='kustutamine(\""+obj[i].nimi+"\")'>"+obj[i].nimi+"</li>";
+            }
+            s+="</ul>";
+            document.getElementById("rullnokkadekiht").innerHTML=s;
+         }
+         function kysirullnokad(){
+             xhr.open("GET", "/loetelu", true);
+             xhr.send();
+         }
+         function lisamine(){
+             var aadress="/lisa?nimi="+document.getElementById("kast1").value+
+               "&mark="+document.getElementById("kast2").value+
+			   "&numbrimark="+document.getElementById("kast3").value;
+             xhr.open("GET", aadress, true);
+             xhr.send();
+         }
+         function kustutamine(nimi){
+             var aadress="/kustuta?nimi="+nimi;
+             xhr.open("GET", aadress, true);
+             xhr.send();
+         }
+      </script>
+  </head>
+  <body onload="kysirullnokad()">
+  <img src="legendid.jpg" alt="aikupets" height="200" width="300">
+    Nimi: <input type="text" id="kast1" />
+    Automark: <input type="text" id="kast2" />
+    Numbrimärk: <input type="text" id="kast3" />
+    <input type="button" value="Lisa rullnokk" onclick="lisamine()" />
+    <div id="teatekiht"></div>
+    <div id="rullnokkadekiht"></div>
+  </body>
+</html>
