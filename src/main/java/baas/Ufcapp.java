@@ -31,11 +31,11 @@ public class Ufcapp {
 	public String lisa(String nimi, String riik, int vanus, float pikkus, float kaal, int voidud) {
 		Ufc voitleja = new Ufc();
 		voitleja.nimi = nimi;
-        voitleja.riik = riik;
+        	voitleja.riik = riik;
 		voitleja.vanus = vanus;
-        voitleja.pikkus = pikkus;
-        voitleja.kaal = kaal;
-        voitleja.v6ite = voidud;
+        	voitleja.pikkus = pikkus;
+        	voitleja.kaal = kaal;
+        	voitleja.v6ite = voidud;
 		ufcDao.save(voitleja);
 		return "Lisati " + voitleja.nimi;
 	}
