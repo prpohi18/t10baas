@@ -1,0 +1,14 @@
+CREATE TABLE ufc (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nimi VARCHAR(50) UNIQUE,
+	riik VARCHAR(50),
+	vanus INT,
+	pikkus FLOAT,
+	kaal FLOAT,
+	v6ite INT
+);
+
+INSERT INTO ufc (nimi, riik, vanus, pikkus, kaal, v6ite) VALUES ("Conor McGregor", "Iirimaa", 29, 175, 70, 21);
+INSERT INTO ufc (nimi, riik, vanus, pikkus, kaal, v6ite) VALUES ("Khabib Nurmagomedov", "Venemaa", 29, 177, 70, 26);
+INSERT INTO ufc (nimi, riik, vanus, pikkus, kaal, v6ite) VALUES ("Stephen Thompson", "USA", 35, 182, 77, 14);
+INSERT INTO ufc (nimi, riik, vanus, pikkus, kaal, v6ite) VALUES ("Francis Ngannou", "Kamerun", 31, 193, 113, 11);
