@@ -1,0 +1,9 @@
+CREATE TABLE lingid(
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   lk_Nimi VARCHAR(50),
+   url VARCHAR(500)
+);
+
+INSERT INTO lingid VALUES (DEFAULT, 'Facebook', 'www.facebook.com');
+
+
