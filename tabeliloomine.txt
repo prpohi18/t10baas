@@ -1,0 +1,9 @@
+CREATE TABLE telefonid(
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   mudel VARCHAR(50),
+   tootja VARCHAR(50)
+);
+
+INSERT INTO telefonid VALUES (DEFAULT, 'Galaxy S9', 'Samsung');
+
+

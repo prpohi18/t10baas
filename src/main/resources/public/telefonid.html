@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+	<title>Telefonid</title>
+	<script>
+		let xhr=new XMLHttpRequest()
+		xhr.onreadystatechange = dataArrive
+		
+		function dataArrive(){
+			if(xhr.readyState==4){
+			console.log(xhr.responseText)
+				if(xhr.responseText.endsWith("successful") || xhr.responseText.endsWith("deleted") || xhr.responseText.endsWith("found")){
+					document.getElementById("info").innerHTML=xhr.responseText
+					requestPhones()
+				} else {
+					displayPhones()
+				}
+			}
+		}
+		
+		function displayPhones(){
+			let obj=JSON.parse(xhr.responseText)
+			let list="<ul>"
+			for(let i=0; i<obj.length; i++){
+				list+="<li>"+obj[i].id+". mudel: "+obj[i].mudel+"; tootja: "+obj[i].tootja+"   <span onclick='deletef(\""+obj[i].id+"\")'> DELETE</span></li>"
+			}
+			list+="</ul>"
+			document.getElementById("phones").innerHTML=list
+		}
+		
+		function requestPhones(){
+			xhr.open("GET", "/list", true)
+			xhr.send()
+		}
+		
+		function addNew(){
+			let newPhone="/add?mudel="+document.getElementById("a1").value+"&tootja="+document.getElementById("a2").value
+			xhr.open("GET", newPhone, true)
+			xhr.send()
+		}	
+		
+		function deletef(id){
+			if(confirm("Are you sure you wanna delete entry with id: "+id)){
+				let newPhone="/delete?id="+id
+				xhr.open("GET", newPhone, true)
+				xhr.send()
+			}
+		}
+		
+	</script>
+	</head>
+	Mudel: <input type="text" id ="a1" /><br><br>
+	Tootja: <input type="text" id ="a2" /><br><br>
+
+	
+	<input type="button" value="Lisa telefon" onclick="addNew()" />
+	<body onload="requestPhones()">
+	<div id="info"></div>
+		<div id="phones"></div>
+	</body>
+</html>
