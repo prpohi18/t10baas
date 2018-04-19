@@ -42,7 +42,7 @@ public class Ufcapp {
 	
 	@RequestMapping("/muuda")
 	public String lisa(int id, int vanus) {
-		Ufc voitleja = ufcDao.findById(id);
+		Ufc voitleja = ufcDao.findOne(id);
 		if (voitleja == null) {return "ID-ga " + id + " võitleja puudub";}
 		voitleja.vanus = vanus;
 		ufcDao.save(voitleja);
@@ -51,9 +51,9 @@ public class Ufcapp {
 	
 	@RequestMapping("/kustuta")
 	public String delete(int id) {
-		Ufc voitleja = ufcDao.findById(id);
+		Ufc voitleja = ufcDao.findOne(id);
 		if (voitleja == null) {return "ID-ga " + id + " võitleja puudub";}
-		ufcDao.deleteById(id);
+		ufcDao.delete(voitleja);
 		return "Tabelist kustutati võitleja " + id + ": " + voitleja.nimi;
 	}
 
