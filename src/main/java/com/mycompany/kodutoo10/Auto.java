@@ -2,7 +2,7 @@ package com.mycompany.kodutoo10;
 import javax.persistence.*;
 
 @Entity
-@Table(name="telefonid")
+@Table(name="autod")
 public class Auto{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
