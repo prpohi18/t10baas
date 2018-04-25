@@ -1,0 +1,8 @@
+CREATE TABLE autod(
+   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   mark VARCHAR(50),
+   mudel VARCHAR(50),
+   aasta INT
+);
+
+INSERT INTO autod VALUES (DEFAULT, 'Audi', '80', 1991);
