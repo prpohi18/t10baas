@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+	<title>Telefonid</title>
+	<script>
+		let xhr=new XMLHttpRequest()
+		xhr.onreadystatechange = dataArrive
+		
+		function dataArrive(){
+			if(xhr.readyState==4){
+			console.log(xhr.responseText)
+				if(xhr.responseText.endsWith("successful") || xhr.responseText.endsWith("deleted") || xhr.responseText.endsWith("found")){
+					document.getElementById("info").innerHTML=xhr.responseText
+					requestCars()
+				} else {
+					displayCars()
+				}
+			}
+		}
+		
+		function displayCars(){
+			let obj=JSON.parse(xhr.responseText)
+			let list="<ul>"
+			for(let i=0; i<obj.length; i++){
+				list+="<li>"+obj[i].id+". mark: "+obj[i].mark+"; mudel: "+obj[i].mudel " aasta: "+obj[i].aasta+"   <span onclick='deletef(\""+obj[i].id+"\")'> DELETE</span></li>"
+			}
+			list+="</ul>"
+			document.getElementById("cars").innerHTML=list
+		}
+		
+		function requestCars(){
+			xhr.open("GET", "/list", true)
+			xhr.send()
+		}
+		
+		function addNew(){
+			let newPhone="/add?mark="+document.getElementById("a1").value+"&mudel="+document.getElementById("a2").value+"&aasta="+document.getElementById("a3").value
+			xhr.open("GET", newCar, true)
+			xhr.send()
+		}	
+		
+		function deletef(id){
+			if(confirm("Are you sure you wanna delete entry with id: "+id)){
+				let newPhone="/delete?id="+id
+				xhr.open("GET", newCar, true)
+				xhr.send()
+			}
+		}
+		
+	</script>
+	</head>
+	Mark:<input type="text" id ="a1" /><br><br>
+	Mudel:<input type="text" id =a2" /><br><br>
+	Aasta: <input type="text" id ="a3" /><br><br>
+
+	
+	<input type="button" value="Lisa auto" onclick="addNew()" />
+	<body onload="requestCars()">
+	<div id="info"></div>
+		<div id="cars"></div>
+	</body>
+</html>
