@@ -18,21 +18,21 @@ public class Baas{
         auto.mark = mark;
         auto.mudel = mudel;
         auto.aasta = aasta;
-        auto.save(auto);
+        autoDAO.save(auto);
         return mark +" save successful";
     }
 
     @RequestMapping("/delete")
     public String delete(int id){
-        Auto auto = AutoDAO.findOne(id);
+        Auto auto = autoDAO.findOne(id);
         if(auto==null){return "No record with that id found";}
-		AutoDAO.delete(auto);
+		autoDAO.delete(auto);
 		return id+" successfully deleted";
     }
     
     @RequestMapping("/list")
     public Iterable<Auto> list(){
-        return AutoDAO.findAll();
+        return autoDAO.findAll();
     }
     
     public static void main(String[] arg){
