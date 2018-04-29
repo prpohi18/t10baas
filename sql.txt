@@ -1,6 +1,6 @@
 CREATE TABLE pereliige (
 	eesnimi VARCHAR(30) PRIMARY KEY,
-	perenimi VARCHAR(30exi),
+	perenimi VARCHAR(30),
 	pikkus INT,
     kaal INT
 );
