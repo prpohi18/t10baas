@@ -22,6 +22,21 @@ public class main {
         return "Telekas daigonaaliga " + diagonaal + " edukalt salvestatud.";
     }
     
+    @RequestMapping("/delete")
+    public String delete(int id) {
+        telekas tv = telekasDao.findOne(id);
+        if (tv == null) {
+            return "Sellise id-ga pole.";
+        }
+        telekasDao.delete(tv);
+        return "Telekas id-ga: " + id + " edukalt kustutatud.";
+    }
+    
+    @RequestMapping("/list")
+    public Iterable<telekas> list() {
+        return telekasDao.findAll();
+    }
+    
     public static void main(String[] arg) {
         SpringApplication.run(main.class, arg);
     }
