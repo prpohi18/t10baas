@@ -15,11 +15,35 @@
                 }
             }
             
+            function displayTvs() {
+                let obj = JSON.parse(xhr.responseText)
+                let list = "<ul>"
+                for (let i = 0; i < obj.length; i++) {
+                    list+= "<li>" + obj[i] + ". Diagonaal: " + obj[i].diagonaal + "; Hind: " + obj[i].hind + "   <span onclick='deletef(\""+obj[i].id+"\")'> DELETE</span></li>"
+                }
+                list+= "</ul>"
+                document.getElementById("tvs").innerHTML=list
+            }
+            
+            function requestTvs() {
+                xhr.open("GET", "/list", true)
+                xhr.send()
+            }
+            
             function addNew() {
                 let newTv = "/add?diagonaal="+document.getElementById("a1").value+"&tootja="+document.getElementById("a2").value
                 xhr.open("GET", newTv, true)
                 xhr.send()
             }
+            
+            function deletef(id) {
+                if (confirm("Kustuta sisestus id-ga: " + id + "?")) {
+                    let newTv = "/delete?id=" + id
+                    xhr.open("GET", newTv, true)
+                    xhr.send()
+                }
+            }
+            
         </script>
     </head>
     Diagonaal: <input type="number" id="a1" /><br>
