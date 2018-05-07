@@ -1,0 +1,14 @@
+CREATE TABLE vormel (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	eesnimi VARCHAR(60),
+	perekonnanimi VARCHAR(60),
+	tiim VARCHAR(60),
+	rahvus VARCHAR(60)
+);
+
+java -jar target/boot3-1.jar lisamine Valtteri Bottas Mercedes Soome
+java -jar target/boot3-1.jar lisamine Sebastian Vettel Ferrari Saksamaa
+
+java -jar target/boot3-1.jar kustutamine 1
+
+java -jar target/boot3-1.jar vaatamine 2
