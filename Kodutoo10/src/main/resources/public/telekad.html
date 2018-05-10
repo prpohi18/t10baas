@@ -46,11 +46,16 @@
             
         </script>
     </head>
+    <h1>Telekate lisamine</h1>
     Diagonaal: <input type="number" id="a1" /><br>
     Hind: <input type="number" id="a2" /><br>
     
-    
     <input type="button" value="Lisa telekas" onclick="addNew()" />
+    
+    <h1>Telekate kustutamine</h1>
+    Id: <input type="number" id="a3" /><br>
+    <input type="button" value="Kustuta telekas" onclick="deletef(id)" />
+    <input type="button" value="Vaata telekaid" onclick="displayTvs()" />
     <body onload="requestTvs()">
         <div id="info"></div>
             <div id="tvs"></div>
