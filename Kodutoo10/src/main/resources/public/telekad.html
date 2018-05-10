@@ -15,11 +15,11 @@
                 }
             }
             
-            function displayTvs(id) {
+            function displayTvs() {
                 let obj = JSON.parse(xhr.responseText)
                 let list = "<ul>"
                 for (let i = 0; i < obj.length; i++) {
-                    list+= "<li>" + obj[i] + " Diagonaal: " + obj[i].diagonaal + "; Hind: " + obj[i].hind + "   <span onclick='deletef(\""+obj[i].id+"\")'> DELETE</span></li>"
+                    list+= "<li>" + obj[i] + ". Diagonaal: " + obj[i].diagonaal + "; Hind: " + obj[i].hind + "   <span onclick='deletef(\""+obj[i].id+"\")'> DELETE</span></li>"
                 }
                 list+= "</ul>"
                 document.getElementById("tvs").innerHTML=list
