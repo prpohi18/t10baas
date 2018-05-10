@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Telekad</title>
+        <script src = "https://code.jquery.com/jquery-3.3.1.js" integrity = "sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin = "anonymous"></script>
+        <script>
+            let xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = dataArrive
+            
+            function dataArrive() {
+                if (xhr.readyState==4) {
+                    console.log(xhr.responseText)
+                    document.getElementById("info").innerHTML=xhr.responseText
+                }
+            }
+            
+            function displayTvs() {
+                let obj = JSON.parse(xhr.responseText)
+                let list = "<ul>"
+                for (let i = 0; i < obj.length; i++) {
+                    list+= "<li>Diagonaal: " + obj[i].diagonaal + "; Hind: " + obj[i].hind + "   <span onclick='deletef(\""+obj[i].id+"\")'> DELETE</span></li>"
+                }
+                list+= "</ul>"
+                document.getElementById("tvs").innerHTML=list
+            }
+            
+            function requestTvs() {
+                xhr.open("GET", "/list", true)
+                xhr.send()
+            }
+            
+            function addNew() {
+                let newTv = "/add?diagonaal="+document.getElementById("a1").value+"&hind="+document.getElementById("a2").value
+                xhr.open("GET", newTv, true)
+                xhr.send()
+            }
+            
+            function deletef(id) {
+                if (confirm("Kustuta sisestus id-ga: " + id + "?")) {
+                    let newTv = "/delete?id=" + id
+                    xhr.open("GET", newTv, true)
+                    xhr.send()
+                }
+            }
+            
+        </script>
+    </head>
+    <h1>Telekate lisamine</h1>
+    Diagonaal: <input type="number" id="a1" /><br>
+    Hind: <input type="number" id="a2" /><br>
+    
+    <input type="button" value="Lisa telekas" onclick="addNew()" /><br>
+    <input type="button" value="Vaata telekaid" onclick="displayTvs()" />
+    <body onload="requestTvs()">
+        <div id="info"></div>
+            <div id="tvs"></div>
+    </body>
+</html>
