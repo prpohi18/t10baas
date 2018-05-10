@@ -31,7 +31,7 @@
             }
             
             function addNew() {
-                let newTv = "/add?diagonaal="+document.getElementById("a1").value+"&tootja="+document.getElementById("a2").value
+                let newTv = "/add?diagonaal="+document.getElementById("a1").value+"&hind="+document.getElementById("a2").value
                 xhr.open("GET", newTv, true)
                 xhr.send()
             }
