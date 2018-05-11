@@ -34,7 +34,7 @@ public class Main {
             Statement lst = cn.createStatement();
             ResultSet lrs = lst.executeQuery("SELECT * FROM competitors");
             while (lrs.next()){
-                System.out.println(rs.getInt("id") + " | " + rs.getString("name") + " | " + rs.getFloat("time"));
+                System.out.println(lrs.getInt("id") + " | " + lrs.getString("name") + " | " + lrs.getFloat("time"));
             }
         } else if (mode.equalsIgnoreCase("v")){
             Statement st = cn.createStatement();
@@ -48,26 +48,21 @@ public class Main {
             while (rs.next()){
                 System.out.println(rs.getInt("id") + " | " + rs.getString("name") + " | " + rs.getFloat("time"));
             }
-            PreparedStatement pst = cn.prepareStatement("UPDATE competitors SET ?=? WHERE id = ?");
+            PreparedStatement pst = cn.prepareStatement("UPDATE competitors SET name=?, time=?  WHERE id = ?");
             System.out.print("Millist soovid muuta? ");
             int selectedId = sc.nextInt();
             pst.setInt(3, selectedId);
-            System.out.print("Mida soovid muuta? ");
-            String selectedCol = sc.next();
-            pst.setString(1, selectedCol);
-            System.out.print("Sisesta uus väärtus: ");
-            if(selectedCol == "name"){
-                String newVal = sc.next();
-                pst.setString(2, newVal);
-            } else if (selectedCol == "time"){
-                float newVal = sc.nextFloat();
-                pst.setFloat(2, newVal);
-            }
+            System.out.print("Sisesta nimi: ");
+            String newNameVal = sc.next();
+            pst.setString(1, newNameVal);
+            System.out.print("Sisesta aeg: ");
+            float newVal = sc.nextFloat();
+            pst.setFloat(2, newVal);
             pst.executeUpdate();
             Statement lst = cn.createStatement();
             ResultSet lrs = lst.executeQuery("SELECT * FROM competitors");
             while (lrs.next()){
-                System.out.println(rs.getInt("id") + " | " + rs.getString("name") + " | " + rs.getFloat("time"));
+                System.out.println(lrs.getInt("id") + " | " + lrs.getString("name") + " | " + lrs.getFloat("time"));
             }
         }
     }
