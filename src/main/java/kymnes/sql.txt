@@ -1,0 +1,14 @@
+CREATE TABLE people (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    eesnimi VARCHAR(50),
+    perenimi VARCHAR(50),
+    vanus INT
+);
+
+java -jar target/boot3-1.jar lisamine Mikk Podra 35
+
+java -jar target/boot3-1.jar lisamine Tiit Sukk 20
+
+java -jar target/boot3-1.jar kustutamine 3
+
+java -jar target/boot3-1.jar vaatamine 4
