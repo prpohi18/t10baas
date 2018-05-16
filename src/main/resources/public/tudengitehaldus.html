@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+      <title>Tudengid</title>
+      <script>
+         var xhr=new XMLHttpRequest();
+         xhr.onreadystatechange=andmedSaabusid;
+         function andmedSaabusid(){
+            if(xhr.readyState==4){
+               console.log(xhr.responseText);
+               if(xhr.responseText.endsWith("salvestatud") ||
+                  xhr.responseText.endsWith("kustutatud") ||
+                  xhr.responseText.endsWith("puudub")){
+                    document.getElementById("teatekiht").innerHTML=xhr.responseText;
+                    kysiTudengid();
+               } else {
+                  kuvaTudengid();
+               }
+            }
+         }
+         
+         function kuvaTudengid(){
+            var obj=JSON.parse(xhr.responseText);
+            var s="<ul>"
+            for(var i=0; i<obj.length; i++){
+               s+="<li onclick='kustutamine(\""+obj[i].nimi+"\")'>"+obj[i].nimi+"</li>";
+            }
+            s+="</ul>";
+            document.getElementById("tudengitekiht").innerHTML=s;
+         }
+         function kysiTudengid(){
+             xhr.open("GET", "/loetelu", true);
+             xhr.send();
+         }
+         function lisamine(){
+             var nimi="/lisa?nimi="+document.getElementById("kast1").value+
+               "&id="+document.getElementById("kast2").value
+             xhr.open("GET", nimi, true);
+             xhr.send();
+         }
+         function kustutamine(nimi){
+             var nimi="/kustuta?nimi="+nimi;
+             xhr.open("GET", nimi, true);
+             xhr.send();
+         }
+      </script>
+  </head>
+  <body onload="kysiTudengid()">
+    <div>Nimi: <input type="text" id="kast1" /><div><br>
+    <div>Id: <input type="number" id="kast2" /><div><br>
+    <input type="button" value="Lisa tudeng" onclick="lisamine()" />
+    <div id="teatekiht"></div>
+    <div id="tudengitekiht"></div>
+  </body>
+</html>
