@@ -1,0 +1,11 @@
+CREATE TABLE tudengid(
+   nimi VARCHAR(50) NOT NULL PRIMARY KEY,
+   id INT,
+   kursus INT
+);
+
+INSERT INTO tudengid VALUES ('Valeri Valentinov', 172535, 1);
+
+mvn package
+java -jar -Dserver.port=51144 target/baas1-1.jar
+http://greeny.cs.tlu.ee:51144/tudengitehaldus.html
