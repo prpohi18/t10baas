@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>Parkimise alustamine</title>
+		<script>
+			var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=andmedSaabusid;
+			function andmedSaabusid(){
+				if(xhr.readyState==4){
+					console.log(xhr.responseText);
+					if(xhr.responseText.endsWith("salvestatud")){
+						document.getElementById("autod").innerHTML=xhr.responseText;
+						kysiAutod();
+					} else {
+						kuvaAutod();
+					}
+				}
+			}
+			
+			function kuvaAutod() {
+				var obj=JSON.parse(xhr.responseText);
+				var s="<ul>"
+				for (var i=0; i<obj.length; i++){
+					s+="<li>"+obj[i].nrmark+ "parkima alates: "+ obj[i].algus + " kuni: " + obj[i].lopp + "</li>";
+				}
+				s+="</ul>";
+				document.getElementById("autod").innerHTML=s;
+			}
+			function kysiAutod() {
+				xhr.open("GET", "/loetelu", true);
+				xhr.send();
+			}
+			function lisamine() {
+				var aadress="/lisa?nrmark="+document.getElementById("kast1").value;
+				xhr.open("GET", aadress, true);
+				xhr.send();
+			}
+		</script>
+	</head>
+
+	<body onload="kysiAutod()">
+		Registrinumber: <input type="text" id="kast1" maxlength="6" minlength="6"/>
+		
+		<input type="button" value="Alusta parkimist!" onclick="lisamine()" />
+		<div id="autod"></div>
+	</body>
+</html>
