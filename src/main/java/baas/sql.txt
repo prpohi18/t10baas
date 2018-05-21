@@ -1,0 +1,14 @@
+CREATE TABLE inimesed (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    eesnimi VARCHAR(50),
+    perenimi VARCHAR(50),
+    vanus INT
+);
+
+java -jar target/boot3-1.0-SNAPSHOT.jar lisamine Kurmo Rootsi 22
+
+java -jar target/boot3-1.0-SNAPSHOT.jar lisamine Kurmo Rootsi 21
+
+java -jar target/boot3-1.0-SNAPSHOT.jar vaatamine 1
+
+java -jar target/boot3-1.0-SNAPSHOT.jar kustutamine 2
