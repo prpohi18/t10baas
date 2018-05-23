@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Kasside haldusleht</title>
+	  <script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+      <script>
+         function kuvaKassidd(){
+		 $.ajax(
+		 {url:"/loetelu",
+		 method:"GET", 
+		 dataType:"json", 
+		 success:function(saabuvTekst){
+			console.log(saabuvTekst);
+			$("#kassidekiht").empty();
+			var loetelu=$("#kassidekiht").append("<ul />");
+			$.each(saabuvTekst, function(nr, kass){
+				loetelu.append($("<li />").html(Kassid.nimi));
+			});
+		}
+	  }
+	);
+}
+      </script>
+  </head>
+  <body onload="kuvaKassid()">
+	<h1>Kassid</h1>
+	<div id="kassidekiht"></div>
+  </body>
+</html>
