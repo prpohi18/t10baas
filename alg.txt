@@ -1,0 +1,6 @@
+CREATE TABLE inimene(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nimi VARCHAR(50),
+	vanus INT,
+	elukoht VARCHAR(30)
+);
