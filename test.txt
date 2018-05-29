@@ -1,0 +1,45 @@
+package salat;
+
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
+import com.codeborne.selenide.WebDriverRunner;
+import com.sun.java.swing.plaf.windows.resources.windows;
+import org.openqa.selenium.By;
+
+public class Proov1 {
+    public static void main (String[] args){
+        System.out.println("[Test]");
+        open("localhost:5556/kt2.html");
+        
+        $("#toiduainenimetus").setValue("test");
+        $("#valkudeprotsent").setValue("10");
+        $("#rasvadeprotsent").setValue("13");
+        $("#sysivesikuteprotsent").setValue("4");
+        $("#addBtn").click();
+        System.out.println("Lehelt sai  " + $("#andmed").getText() + ", õige on test salvestatud!");
+        
+        $("#nimetus3").setValue("test");
+        $("#viewBtn").click();
+        System.out.println("Lehelt sai  " + $("#andmed").getText() + ", õige on (?) test 10.0 13.0 4.0");
+        
+        $("#nimetus2").setValue("test");
+        $("#delBtn").click();
+        System.out.println("Lehelt sai  " + $("#andmed").getText() + ", õige on test kustutati andmebaasist.");
+        
+        $("#alates").setValue("0");
+        $("#kuni").setValue("4");
+        $("#searchBtn").click();
+        System.out.println("Lehelt sai  " + $("#andmed").getText() + ", õige on (2) kartul 1.0 3.0 8.0 || (3) hapukoor 12.0 1.0 45.0 || ");
+    }
+}
+
+/*        
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time: 18.095s
+Finished at: Wed May 30 14:26:17 EEST 2018
+Final Memory: 7M/155M
+------------------------------------------------------------------------
+*/  
