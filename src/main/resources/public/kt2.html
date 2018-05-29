@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SALAT</title>
+    <script>
+        let xhr=new XMLHttpRequest();
+        xhr.onreadystatechange=kuvaVastus;
+        let xhr2=new XMLHttpRequest();
+        xhr2.onreadystatechange=kuvaKustutus;
+        let xhr3=new XMLHttpRequest();
+        xhr3.onreadystatechange=kuvaVaatamine;
+        let xhr4=new XMLHttpRequest();
+        xhr4.onreadystatechange=kuvaOtsimine;
+		let xhr5=new XMLHttpRequest();
+		
+		/* SALATI OSA
+        xhr5.onreadystatechange=salatiAndmed;
+		let xhr6=new XMLHttpRequest();
+        xhr6.onreadystatechange=salatiSisu;	
+		let xhr6=new XMLHttpRequest();
+        xhr7.onreadystatechange=tagastaSalatiKomponentideKogus;
+		*/
+		
+        function input(){
+            let p2ring="toiduainenimetus=" + document.getElementById("nimetus").value + "&valkudeprotsent=" + document.getElementById("valgud").value
+            + "&rasvadeprotsent=" + document.getElementById("rasvad").value + "&sysivesikuteprotsent=" +document.getElementById("sysivesikud").value;
+            return p2ring;
+        }
+        function lisamine(){
+            xhr.open("GET", "lisa?" + input(), true);
+            xhr.send(true);
+        }
+        function kuvaVastus(){
+            if(xhr.readyState==4){
+                document.getElementById("andmed").innerHTML=xhr.responseText;
+            }
+        }
+        function kustutamine(){
+            xhr2.open("GET", "kustuta?" + "toiduainenimetus=" + document.getElementById("nimetus2").value, true);
+            xhr2.send(true);
+        }
+        function kuvaKustutus(){
+            if(xhr2.readyState==4){
+                document.getElementById("andmed").innerHTML=xhr2.responseText;
+            }
+        }
+        function vaatamine(){
+            xhr3.open("GET", "vaatakoiki?" + "toiduainenimetus=" + document.getElementById("nimetus3").value, true);
+            xhr3.send(true);
+        }
+        function kuvaVaatamine(){
+            if(xhr3.readyState==4){
+                document.getElementById("andmed").innerHTML=xhr3.responseText;
+            }
+        }
+        function otsimine(){
+            xhr4.open("GET", "otsi?" + "alates=" + document.getElementById("alates").value + 
+            "&kuni=" + document.getElementById("kuni").value, true);
+            xhr4.send(true);
+        }
+        function kuvaOtsimine(){
+            if(xhr4.readyState==4){
+                document.getElementById("andmed").innerHTML=xhr4.responseText;
+            }
+        }
+		
+		/*
+		function salatiAndmed() {
+			if(xhr5.readyState==4){
+				connection.open("GET", "/salat", true);
+				connection.send();
+			}
+        }
+        salatiAndmed();
+        function salatiSisu() {
+			if(xhr6.readyState==4){
+			  //Vastus tuleb id-ga salatList HTMLi
+			   document.getElementById("salatList").innerHTML = connection.responseText;
+			}
+        }
+        function tagastaSalatiKomponentideKogus() {
+			if(xhr7.readyState==4){
+				var salatiKogus = document.getElementById("salatiKogus").value;
+				connection.open("GET", "/kartuliSalat?vajalik_kogus=" + salatiKogus, true);
+				connection.send();
+			}
+        }*/
+    </script>
+</head>
+<body>
+    Lisa toiduained andmebaasi: <br><br>
+    Nimetus: <input type="text" id="nimetus"/>
+    <br><br>
+    Valgud: <input type="text" id="valgud"/>
+    <br><br>
+    Rasvade protsent: <input type="text" id="rasvad"/>
+    <br><br>
+    Süsivesikute protsent: <input type="text" id="sysivesikud"/>
+    <br><br>
+    <button id="addBtn" onclick="lisamine()">Lisa</button>
+    <hr>
+	Kustuta toiduained nimetuse järgi:
+    <br><br>
+    Nimetus: <input type="text" id="nimetus2"/>
+    <br><br>
+    <button id="delBtn" onclick="kustutamine()">Kustuta</button>
+    <hr>
+	Otsi toiduainet nimetuse järgi:
+    <br><br>
+    Nimetus: <input type="text" id="nimetus3"/>
+    <br><br>
+    <button id="viewBtn" onclick="vaatamine()">Vaata</button>
+    <hr>
+    <br><br>
+    Rasvaprotsendi järgi otsimine <br>
+    Alates: <input type="text" id="alates"/> Kuni: <input type="text" id="kuni"/>
+    <br><br>
+    <button id="searchBtn" onclick="otsimine()">Otsi</button>
+    <br><br>
+    Andmed: <br>
+    <div id="andmed">---</div>
+	
+	<!--
+	
+	<h2>Salat</h2>
+	
+	
+
+	<div>
+
+	<table id="salatList" class="table table-inverse"></table>
+
+	</div>
+
+	<br>
+	<p>Sisesta, kui palju soovid salatit valmistada </p>
+	<p>Tagastatakse retsepti järgi vajaminevate komponentide kogus</p>
+
+	<label>Kogus</label>
+	<input id="salatiKogus" type="number"><br>
+
+	<input type="button" class="btn" value="Leia" onclick="tagastaSalatiKomponentideKogus()">
+	
+	-->
+</body>
+</html>

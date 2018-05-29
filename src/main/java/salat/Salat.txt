@@ -1,0 +1,24 @@
+SALAT
+
+
+*
++1)Koosta klass toiduaine tarbeks(nimetus, valkude, rasvade ja süsivesikute protsent). (TOIDUAINE.JAVA)
++2)Protsent kokku ei tohi ületada 100 - veateade  (TOIDUAINE.JAVA)
++3)Loo toiduaine. (PROOV2.JAVA)
++4)Koosta klass toidukomponendi tarbeks(kogus). (TOIDUKOMPONENT.JAVA)
++5)Loo mõned toidukomponendid(100g kartuleid, 30g hapukoort, 50g vorsti) (PROOV1.JAVA)
++6)Lisa käsklus rasvakoguse leidmiseks. (TOIDUKOMPONENT.JAVA)
+
+*
++1)Koosta andmebaasiliidesega veebileht, kus saab toiduaineid objektide kaudu lisada, kustutada,
+	nime järgi andmeid vaadata ja rasvaprotsendivahemiku järgi otsida. (RAKENDUS.JAVA)
++2)Koosta lisamise, arvutamise, otsimise ja kustutamise jaoks automaattest. (TEST.TXT)
+
+
+*
++1)Koosta klass toidu jaoks(nimetus, toidukomponendid)
++2)Toidule käsklused küsimaks sisalduvate valkude, rasvade ja süsivesikute kogust.
++3)Loo retsepti järgi toit(kartulisalat), küsi salatis leiduvate toitainete kogused.
++4)Koosta veebirakendus, kus näidatakse valitud toidu etteantud koguse( 5kg kartulisalati) jaoks vajalikud toiduained.
+5)Kontrolli automaattestiga arvutuste õigsust.
+
