@@ -1,0 +1,7 @@
+mvn pavkage
+java -jar -Dserver.port=10619 target/baas1-1.jar
+1: http://greeny.cs.tlu.ee:10619/tervitus?eesnimi=Juku
+2: http://greeny.cs.tlu.ee:10619/loetelu
+3: http://greeny.cs.tlu.ee:10619/lisa?koeranimi=KassKaru&synniaasta=2011
+4: http://greeny.cs.tlu.ee:10619/muuda?id=5&koeranimi=HendrikHeinsaar&synniaasta=1998
+5: http://greeny.cs.tlu.ee:10619/kustuta?id=1
