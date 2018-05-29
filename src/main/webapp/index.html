@@ -5,26 +5,27 @@
     <title>Andmebaasiga suhtlemine</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             getUsers();
 
         });
 
         let xhr = new XMLHttpRequest();
-        function addUser() {
-            let firstName=document.getElementById("first_name_box").value
-            let lastName=document.getElementById("last_name_box").value
-            let phoneNumber=document.getElementById("phone_number_box").value
-            let email=document.getElementById("email_box").value
 
-            let aadress="/demo/add?firstname="+firstName+"&lastname="+lastName+"&phonenumber="+phoneNumber+"&email="+email
+        function addUser() {
+            let firstName = document.getElementById("first_name_box").value
+            let lastName = document.getElementById("last_name_box").value
+            let phoneNumber = document.getElementById("phone_number_box").value
+            let email = document.getElementById("email_box").value
+
+            let aadress = "/demo/add?firstname=" + firstName + "&lastname=" + lastName + "&phonenumber=" + phoneNumber + "&email=" + email
             xhr.open("GET", aadress, true)
             xhr.send()
             location.reload();
         }
 
         function deleteUser(userId) {
-            let aadress="/demo/delete?id="+userId
+            let aadress = "/demo/delete?id=" + userId
             xhr.open("GET", aadress, true)
             xhr.send()
             location.reload();
@@ -32,17 +33,17 @@
         }
 
 
-
+        //kutsub välja
         function getUsers() {
             ajaxGet();
 
             // DO GET
-            function ajaxGet(){
+            function ajaxGet() {
                 $.ajax({
-                    type : "GET",
-                    url : "demo/all",
-                    success: function(result){
-                        $.each(result, function(i, user){
+                    type: "GET",
+                    url: "demo/all",
+                    success: function (result) {
+                        $.each(result, function (i, user) {
 
                             var userRow = '<tr>' +
                                 '<td>' + user.id + '</td>' +
@@ -50,17 +51,17 @@
                                 '<td>' + user.lastName.toUpperCase() + '</td>' +
                                 '<td>' + user.phoneNumber + '</td>' +
                                 '<td>' + user.email + '</td>' +
-                                '<td><button class="btn btn-sm btn-danger" onclick="deleteUser(' + user.id + ');">Remove</button></td>'+
+                                '<td><button class="btn btn-sm btn-danger" onclick="deleteUser(' + user.id + ');">Remove</button></td>' +
                                 '</tr>';
 
                             $('#userTable tbody').append(userRow);
 
                         });
 
-                        $( "#userTable tbody tr:odd" ).addClass("info");
-                        $( "#userTable tbody tr:even" ).addClass("success");
+                        $("#userTable tbody tr:odd").addClass("info");
+                        $("#userTable tbody tr:even").addClass("success");
                     },
-                    error : function(e) {
+                    error: function (e) {
                         alert("ERROR: ", e);
                         console.log("ERROR: ", e);
                     }
@@ -70,21 +71,6 @@
 
         }
 
-
-
-/*        function square() {
-            let n1=document.getElementById("box").value
-            //let n2 = document.getElementById("box2").value
-            //let aadress="/liitmine?arv1="+a1+"&arv2="+a2
-            let aadress="/ruut?arv="+n1
-            xhr.open("GET", aadress, true)
-            xhr.send()
-        }
-        function kuvaVastus() {
-            if(xhr.readyState==4) {
-                document.getElementById("vastus").innerHTML=xhr.responseText
-            }*/
-        // }
     </script>
 </head>
 <body>
@@ -110,12 +96,10 @@
 </div>
 
 <div> User adding</div>
-<input type="FirstName" id="first_name_box" placeholder="First Name" />
-<input type="LastName" id="last_name_box" placeholder="Last Name" />
+<input type="FirstName" id="first_name_box" placeholder="First Name"/>
+<input type="LastName" id="last_name_box" placeholder="Last Name"/>
 <input type="phoneNumber" id="phone_number_box" placeholder="Phone number"/>
-<input type="email" id="email_box" placeholder="email" />
+<input type="email" id="email_box" placeholder="email"/>
 <input type="submit" value="Add User" onclick="addUser()"><br/>
-
-<span id="users">Users</span>
 </body>
 </html>

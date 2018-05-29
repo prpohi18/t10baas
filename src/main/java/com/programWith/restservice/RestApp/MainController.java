@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 
 @Controller    // This means that this class is a Controller
+// Defineerin asukohad, kust meetodid asuvad...saab vaadata aadressil ntx http://localhost:8080/demo/all
 @RequestMapping(path="/demo") // This means URL's start with /demo (after Application path)
 public class MainController {
     @Autowired // This means to get the bean called userRepository
@@ -27,7 +28,7 @@ public class MainController {
             , @RequestParam String email) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-
+        // Tekitab vahekasutaja, kust info läheb...edasi
         User n = new User();
         n.setFirstName(firstname);
         n.setLastName(lastname);
@@ -36,7 +37,7 @@ public class MainController {
         userRepository.save(n);
         return "User Saved";
     }
-
+    // kutsub andmebaasist kõik kasutajad välja
     @GetMapping(path="/all")
     public @ResponseBody Iterable<User> getAllUsers() {
         // This returns a JSON or XML with the users

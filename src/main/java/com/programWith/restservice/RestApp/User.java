@@ -20,7 +20,7 @@ public class User {
     private String email;
 
     private int phoneNumber;
-
+    // Teen builderi, kus saab kogu useri yhe hooga ära defineerida
     public User(String firstName, String lastName, String email, int phoneNumber){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,7 +28,7 @@ public class User {
         this.phoneNumber = phoneNumber;
 
     }
-
+    // Teen default builderi, et ei jookseks kokku, kui ei ole kõiki parameetreid kaasa antud (ntx phonenumber on tyjaks jäetud)
     public User(){
 
     }
