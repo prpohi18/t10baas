@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Andmebaasiga suhtlemine</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            getUsers();
+
+        });
+
+        let xhr = new XMLHttpRequest();
+
+        function addUser() {
+            let firstName = document.getElementById("first_name_box").value
+            let lastName = document.getElementById("last_name_box").value
+            let phoneNumber = document.getElementById("phone_number_box").value
+            let email = document.getElementById("email_box").value
+
+            let aadress = "/demo/add?firstname=" + firstName + "&lastname=" + lastName + "&phonenumber=" + phoneNumber + "&email=" + email
+            xhr.open("GET", aadress, true)
+            xhr.send()
+            location.reload();
+        }
+
+        function deleteUser(userId) {
+            let aadress = "/demo/delete?id=" + userId
+            xhr.open("GET", aadress, true)
+            xhr.send()
+            location.reload();
+
+        }
+
+
+        //kutsub välja
+        function getUsers() {
+            ajaxGet();
+
+            // DO GET
+            function ajaxGet() {
+                $.ajax({
+                    type: "GET",
+                    url: "demo/all",
+                    success: function (result) {
+                        $.each(result, function (i, user) {
+
+                            var userRow = '<tr>' +
+                                '<td>' + user.id + '</td>' +
+                                '<td>' + user.firstName.toUpperCase() + '</td>' +
+                                '<td>' + user.lastName.toUpperCase() + '</td>' +
+                                '<td>' + user.phoneNumber + '</td>' +
+                                '<td>' + user.email + '</td>' +
+                                '<td><button class="btn btn-sm btn-danger" onclick="deleteUser(' + user.id + ');">Remove</button></td>' +
+                                '</tr>';
+
+                            $('#userTable tbody').append(userRow);
+
+                        });
+
+                        $("#userTable tbody tr:odd").addClass("info");
+                        $("#userTable tbody tr:even").addClass("success");
+                    },
+                    error: function (e) {
+                        alert("ERROR: ", e);
+                        console.log("ERROR: ", e);
+                    }
+                });
+            }
+
+
+        }
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>User Table</h1>
+    <div class="row col-md-7 table-responsive">
+        <table id="userTable" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div> User adding</div>
+<input type="FirstName" id="first_name_box" placeholder="First Name"/>
+<input type="LastName" id="last_name_box" placeholder="Last Name"/>
+<input type="phoneNumber" id="phone_number_box" placeholder="Phone number"/>
+<input type="email" id="email_box" placeholder="email"/>
+<input type="submit" value="Add User" onclick="addUser()"><br/>
+</body>
+</html>
