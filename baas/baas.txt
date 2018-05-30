@@ -1,0 +1,21 @@
+CREATE TABLE ruutvorrand(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  a DOUBLE,
+  b DOUBLE,
+  c DOUBLE,
+  x1 DOUBLE,
+  x2 DOUBLE
+);
+
+[jaemihk@greeny baas]$ java -jar target/boot3-1.jar 1 -8 15
+Argumente: 3
+1 2.0 7.0 6.0 -6.0 -8.0
+3 5.0 9.0 4.0 -20.0 -25.0
+4 1.0 -8.0 15.0 5.0 3.0
+
+[jaemihk@greeny baas]$ java -jar target/boot3-1.jar 2 7 6
+Argumente: 3
+1 2.0 7.0 6.0 -6.0 -8.0
+3 5.0 9.0 4.0 -20.0 -25.0
+4 1.0 -8.0 15.0 5.0 3.0
+5 2.0 7.0 6.0 -6.0 -8.0
