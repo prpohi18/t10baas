@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
   <head>
     <title>Registreerunud</title>
@@ -30,9 +30,9 @@
 				xhr.send();
 			} 
 			function lisamine(){
-             var yl="/lisa?nimi="+document.getElementById("eesnimi").value+
-               "&perekonnanimi="+document.getElementById("perekonnanimi").value+
-               "&email="+document.getElementById("email").value;
+             var yl="/?"+document.getElementById("eesnimi").value+
+               "&"+document.getElementById("perekonnanimi").value+
+               "&"+document.getElementById("email").value;
              xhr.open("GET", yl, true);
              xhr.send();
 			}
@@ -43,7 +43,7 @@
 			}
     </script>
   </head>
-  <body onload="kuvaRegistreerunud()">
+  <body onload="showUsers()">
     <h1>Registreerunud</h1>
     Eesnimi: <input type="text" id="eesnimi"/>
     Perekonnanimi: <input type="text" id="perekonnanimi"/>

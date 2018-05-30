@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Registreerunud</title>
+		
+			<script
+  	src="https://code.jquery.com/jquery-3.3.1.js"
+  	integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+ 	crossorigin="anonymous">
+			</script>
+	<script>
+		function showUsers(){
+			$.ajax({url:"/loetelu", dataType:"json", success:function(saabuvTekst){
+			console.log(saabuvTekst);
+			$("#registeresUsers").empty();
+			var loetelu = $("#registeredUsers").append("<ul>");
+			$.each(saabuvTekst, function(nr, Registreerunud){
+				loetelu.append($("<li />").html(Registreerunud.nimi));
+				});
+			}
+		}
+	);
+}
+	</script>
+	</head>
+	<body onload="showUsers()">
+		<h1>Users</h1>
+		<div id = "registeredUsers">kihikoht</div>
+	</body>
+
+</html>
