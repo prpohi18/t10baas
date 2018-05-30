@@ -1,0 +1,11 @@
+CREATE TABLE kontserttrass(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    trassityyp VARCHAR(30),
+    tootja VARCHAR(30),
+    kogus INT
+);
+
+INSERT INTO kontserttrass VALUES (DEFAULT, "kolmnurk", "Hiina", 6);
+INSERT INTO kontserttrass VALUES (DEFAULT, "ruut", "Milos", 15);
+
+SELECT * FROM kontserttrass;

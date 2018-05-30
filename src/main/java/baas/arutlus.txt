@@ -1,0 +1,3 @@
+millist tulpa muuta soovid (trassityyp, tootja, kogus)
+millist väärtust muuta soovid
+mis tuleb muudetava väärtuse asemele()
