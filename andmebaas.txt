@@ -1,0 +1,8 @@
+CREATE TABLE t10_ladu(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    toode VARCHAR(50),
+    hind DOUBLE,
+    saadavus VARCHAR(50)
+);
+
+*INSERT into t10_ladu VALUES (default, "Makaronid", 1.4, "Olemas");*
