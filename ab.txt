@@ -1,0 +1,8 @@
+CREATE TABLE Players (
+ID int AUTO_INCREMENT PRIMARY KEY,
+Name varchar(35) NOT NULL,
+KitNumber int,
+Team varchar(35), 
+Goals int,
+Assists int
+);
