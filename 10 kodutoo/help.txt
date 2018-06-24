@@ -1,0 +1,2 @@
+10 kodutoo mvn package
+java -jar -Dserver.port=58000 target/baas1-1.jar
